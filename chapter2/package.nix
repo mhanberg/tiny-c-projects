@@ -1,13 +1,14 @@
-{stdenv, ...}:
-stdenv.mkDerivation {
-  name = "greeting";
+{
+  pkgs,
+  zig,
+  ...
+}:
+pkgs.stdenv.mkDerivation {
+  name = "chapter2";
   version = "0.1.0";
   src = ./.;
-  buildPhase = ''
-    clang -Wall -o greeting main.c
-  '';
-  installPhase = ''
-    mkdir -p $out/bin
-    cp greeting $out/bin
-  '';
+  nativeBuildInputs = [
+    zig.hook
+    pkgs.zig_0_14
+  ];
 }

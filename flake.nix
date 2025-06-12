@@ -15,14 +15,14 @@
     ];
     perSystem = func: lib.genAttrs systems (system: func {pkgs = nixpkgs.legacyPackages.${system};});
   in {
-    packages = perSystem ({pkgs, ...}: let
-      stdenv = pkgs.clangStdenv;
-    in {
-      chapter2 = import ./chapter2/package.nix {inherit stdenv;};
+    packages = perSystem ({pkgs, ...}: {
+      chapter2 = pkgs.callPackage ./chapter2/package.nix {};
     });
     devShells = perSystem ({pkgs, ...}: {
       default = pkgs.mkShell {
         packages = with pkgs; [
+          zig_0_14
+          zls
           clang-tools
           clang
         ];
