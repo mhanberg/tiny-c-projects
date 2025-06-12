@@ -18,8 +18,8 @@
     devShells = perSystem ({pkgs, ...}: {
       default = pkgs.mkShell {
         packages = with pkgs; [
+          clang-tools
           clang
-          clang-analyzer
         ];
       };
     });
