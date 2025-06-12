@@ -18,18 +18,7 @@
     packages = perSystem ({pkgs, ...}: let
       stdenv = pkgs.clangStdenv;
     in {
-      greeting = stdenv.mkDerivation {
-        name = "greeting";
-        version = "0.1.0";
-        src = ./.;
-        buildPhase = ''
-          clang -Wall -o greeting ./chapter2/greeting.c
-        '';
-        installPhase = ''
-          mkdir -p $out/bin
-          cp greeting $out/bin
-        '';
-      };
+      chapter2 = import ./chapter2/package.nix {inherit stdenv;};
     });
     devShells = perSystem ({pkgs, ...}: {
       default = pkgs.mkShell {
