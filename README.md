@@ -10,10 +10,10 @@ Under the hood it just uses Clang, you can read the flake to see how it's being 
 
 ```bash
 # build it
-$ nix build .#greeting
+$ nix build .#chapter2
 
 # build and run it
-$ nix run .#greeting
+$ nix run .#chapter2
 ```
 
 ## Development
